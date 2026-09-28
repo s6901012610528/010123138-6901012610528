@@ -10,3 +10,14 @@ class Product:                                                      # Create cla
         print(f"Product Name : {self.name}")                        # Show product name
         print(f"Price : {self.price} Baht")                         # Show price
         print(f"Stock : {self.stock} Item")                         # Show stock
+
+class Inventory:
+    def __init__(self):
+        self.products = []
+
+    def add_product(self):
+        print("\n===== Add Product =====")
+        product_id = input("Product ID : ")
+        name = input("Product Name : ")
+        price = float(input("Price : "))
+        stock = int(input("Stock : "))
