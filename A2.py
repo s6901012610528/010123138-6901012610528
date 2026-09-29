@@ -11,13 +11,14 @@ class Product:                                                      # Create cla
         print(f"Price : {self.price} Baht")                         # Show price
         print(f"Stock : {self.stock} Item")                         # Show stock
 
-class Inventory:
-    def __init__(self):
-        self.products = []
+class Inventory:                                                    # Create class Inventory to manage products
+    def __init__(self):                                             # Method runs when created object
+        self.products = []                                          # Define empty array to store products
 
-    def add_product(self):
-        print("\n===== Add Product =====")
-        product_id = input("Product ID : ")
-        name = input("Product Name : ")
-        price = float(input("Price : "))
-        stock = int(input("Stock : "))
+    def add_product(self):                                          # Define method to add product
+        print("\n===== Add Product =====")                          # Show add Product
+        product_id = input("Product ID : ")                         # Input for product ID
+        name = input("Product Name : ")                             # Input for product name
+        price = float(input("Price : "))                            # Input for price
+        stock = int(input("Stock : "))                              # Input for stock
+        
