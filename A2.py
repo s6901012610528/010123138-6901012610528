@@ -16,9 +16,40 @@ class Inventory:                                                    # Create cla
         self.products = []                                          # Define empty array to store products
 
     def add_product(self):                                          # Define method to add product
-        print("\n===== Add Product =====")                          # Show add Product
+        print("\n===== Add Product =====")                          # Show menu title "Add Product"
         product_id = input("Product ID : ")                         # Input for product ID
         name = input("Product Name : ")                             # Input for product name
         price = float(input("Price : "))                            # Input for price
         stock = int(input("Stock : "))                              # Input for stock
-        
+        new_product = Product(product_id, name, price, stock)       # Create object new product
+        self.products.append(new_product)                           # Add new product to array in class Inventory
+        print("Product added successfully!")                        # Show "Product added successfully!"
+
+    def show_product(self):                                         # Define method to show product
+        print("\n===== All Product =====")                          # Show menu title "All Product"
+        if(len(self.products) == 0):                                # Create condition if haven't Product
+            print("No Product.")                                    # Show "No Product."
+        else:                                                       # if have Product
+            i = 0                                                   # Set i = 0 (index)
+            p = self.products[i]                                    # Get first product from array
+            while(i < len(self.products)):                          # Loop until i less number of products
+                print()                                             # Separator line
+                p.display_info()                                    # Show product info
+                print("------------------------")                   # Show separator line
+                i = i + 1                                           # Increase index by 1
+
+manager = Inventory()                                               # Create Inventory object name manager
+while True:                                                         # Loop program until user exits
+    print("\nInventory Management System Program")                  # Show title program
+    print("====================================")                   # Show separator line
+    print("Enter 1 : Add Product")                                  # Show main menu 1
+    print("Enter 2 : Show all Product")                             # Show main menu 2
+    print("Enter 0 : Exit")                                         # Show main menu 0
+
+    choice = int(input("Enter your choice : "))                     # Get user choice as integer
+    if(choice == 1):                                                # Create condition choice 1
+        manager.add_product()                                       # If select choice 1 to add product
+    elif(choice == 2):                                              # Create condition choice 2
+        manager.show_product()                                      # If select choice 2 to show all product
+    elif(choice == 0):                                              # Create condition choice 0
+        break                                                       # If select choice 0 to exit program
