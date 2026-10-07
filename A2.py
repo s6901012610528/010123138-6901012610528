@@ -29,14 +29,50 @@ class Inventory:                                                    # Create cla
         print("\n===== All Product =====")                          # Show menu title "All Product"
         if(len(self.products) == 0):                                # Create condition if haven't Product
             print("No Product.")                                    # Show "No Product."
-        else:                                                       # if have Product
+        else:                                                       # If have Product
             i = 0                                                   # Set i = 0 (index)
-            p = self.products[i]                                    # Get first product from array
             while(i < len(self.products)):                          # Loop until i less number of products
+                p = self.products[i]                                # Get first product from array
                 print()                                             # Separator line
                 p.display_info()                                    # Show product info
                 print("------------------------")                   # Show separator line
                 i = i + 1                                           # Increase index by 1
+
+    def search_product(self):                                       # Define method to search product
+        print("\n===== Search Product =====")                       # Show menu title "Search Product"
+        search = input("Enter Product ID : ")                       # Input for product ID to search
+        if(len(self.products) == 0):                                # Create condition if haven't Product
+            print("No Product.")                                    # Show "No Product."
+        else:                                                       # If have Product
+            i = 0                                                   # Set i = 0 (index)
+            while(i < len(self.products)):                          # Loop until i less number of products
+                p = self.products[i]                                # Get first product from array
+                if(p.product_id == search):                         # Create condition if product ID is equal to search ID
+                    print("Product found!")                         # Show "Product found!"
+                    print("------------------------")               # Show separator line
+                    p.display_info()                                # Show product info
+                    print("------------------------")               # Show separator line
+                    return                                          # Exit method if found product
+                i = i + 1                                           # Increase index by 1
+            print("Product not found.")                             # Show "Product not found."
+
+    def stock_in(self):                                             # Define method to receive stock
+        print("\n===== Stock In =====")                             # Show menu title "Stock In"
+        search = input("Enter Product ID : ")                       # Input for product ID to receive stock
+        if(len(self.products) == 0):                                # Create condition if haven't Product
+            print("No Product.")                                    # Show "No Product."
+        else:                                                       # If have Product
+            i = 0                                                   # Set i = 0 (index)
+            while(i < len(self.products)):                          # Loop until i less number of products
+                p = self.products[i]                                # Get first product from array
+                if(p.product_id == search):                         # Create condition if product ID is equal to search ID
+                    amount = int(input("Enter quantity : "))        # Input for quantity to receive stock
+                    p.stock = p.stock + amount                      # Increase stock by amount
+                    print("Stock in successful.")                   # Show "Stock in successful."
+                    print(f"Remaining stock : {p.stock} units")     # Show remaining stock
+                    return                                          # Exit method if found product
+                i = i + 1                                           # Increase index by 1
+                print("Product not found.")                         # Show "Product not found."
 
 manager = Inventory()                                               # Create Inventory object name manager
 while True:                                                         # Loop program until user exits
@@ -44,6 +80,8 @@ while True:                                                         # Loop progr
     print("====================================")                   # Show separator line
     print("Enter 1 : Add Product")                                  # Show main menu 1
     print("Enter 2 : Show all Product")                             # Show main menu 2
+    print("Enter 3 : Search Product")                               # Show main menu 3
+    print("Enter 4 : Stock In")                                     # Show main menu 4
     print("Enter 0 : Exit")                                         # Show main menu 0
 
     choice = int(input("Enter your choice : "))                     # Get user choice as integer
@@ -51,5 +89,9 @@ while True:                                                         # Loop progr
         manager.add_product()                                       # If select choice 1 to add product
     elif(choice == 2):                                              # Create condition choice 2
         manager.show_product()                                      # If select choice 2 to show all product
+    elif(choice == 3):                                              # Create condition choice 3
+        manager.search_product()                                    # If select choice 3 to search product
+    elif(choice == 4):                                              # Create condition choice 4
+        manager.stock_in()                                          # If select choice 4 to receive stock
     elif(choice == 0):                                              # Create condition choice 0
         break                                                       # If select choice 0 to exit program
