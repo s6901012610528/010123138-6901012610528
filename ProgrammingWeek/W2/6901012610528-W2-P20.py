@@ -1,0 +1,13 @@
+# code run in pickcode.io
+# W2 : Draw Balloon
+from processing import *
+
+def draw_balloon():
+    ellipse(200,200,100,100)
+    line(200,250,200,400)
+
+def setup():
+    size(500,500)
+    draw_balloon()
+
+run()
