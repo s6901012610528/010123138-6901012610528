@@ -1,0 +1,5 @@
+# code run in Thonny Python 3.14.4
+# W1 : Start from Output
+
+print("Hello, World")
+print("Hello, KMUTNB")
