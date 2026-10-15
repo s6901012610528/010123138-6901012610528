@@ -113,6 +113,25 @@ class Inventory:                                                    # Create cla
         if not found:                                                   # Create condition if not found low stock product
             print("Don't have low stock product.")                      # Show "Don't have low stock product."
 
+    def open_file(self):                                                        # Define method to add product from file 
+        try:                                                                    # Try to open file "example.txt" in read mode
+            with open("example.txt", "r") as file:                              # Open file "example.txt" in read mode
+                lines = file.readlines()                                        # Read all lines from file and store in variable lines
+                for line in lines:                                              # Loop through each line in lines
+                    data = line.strip().split(",")                              # Split line by comma and store in variable data
+                    if (len(data) == 4):                                        # Check if data has 4 elements (product_id, name, price, stock)
+                        product_id = data[0]                                    # Get product ID from data
+                        name = data[1]                                          # Get product name from data
+                        price = float(data[2])                                  # Get product price from data and convert to float
+                        stock = int(data[3])                                    # Get product stock from data and convert to int
+                        new_product = Product(product_id, name, price, stock)   # Create object new product
+                        self.products.append(new_product)                       # Add new product to array in class Inventory
+                print("Products loaded successfully from file!")                # Show "Products loaded successfully from file!"
+        except FileNotFoundError:                                               # Create exception if file not found
+            print(f"File \"example.txt\" not found.")                           # Show "File not found."   
+        except Exception as e:                                                  # Create exception for any other error
+            print(f"An error occurred: {e}")                                    # Show error message
+
 manager = Inventory()                                               # Create Inventory object name manager
 while True:                                                         # Loop program until user exits
     print("\nInventory Management System Program")                  # Show title program
@@ -123,6 +142,7 @@ while True:                                                         # Loop progr
     print("Enter 4 : Stock In")                                     # Show main menu 4
     print("Enter 5 : Stock Out")                                    # Show main menu 5
     print("Enter 6 : Low Stock")                                    # Show main menu 6
+    print("Enter 7 : Add Product from File")                        # Show main menu 7
     print("Enter 0 : Exit")                                         # Show main menu 0
 
     choice = int(input("Enter your choice : "))                     # Get user choice as integer
@@ -138,5 +158,7 @@ while True:                                                         # Loop progr
         manager.stock_out()                                         # If select choice 5 to dispatch stock
     elif(choice == 6):                                              # Create condition choice 6
         manager.low_stock()                                         # If select choice 6 to show low stock product
+    elif(choice == 7):                                              # Create condition choice 7
+        manager.open_file()                                         # If select choice 7 to add product from file
     elif(choice == 0):                                              # Create condition choice 0
         break                                                       # If select choice 0 to exit program
