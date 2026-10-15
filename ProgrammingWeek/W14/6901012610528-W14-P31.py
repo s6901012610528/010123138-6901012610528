@@ -1,0 +1,13 @@
+# code run in Thonny Python 3.14.4
+# W14 : Line chart
+import matplotlib.pyplot as plt
+
+x = [1, 2, 3, 4, 5]
+y = [2, 4, 6, 8, 10]
+
+plt.plot(x, y)
+plt.title("Simple Line Plot")
+plt.xlabel("X Axis")
+plt.ylabel("Y Axis")
+
+plt.show()
