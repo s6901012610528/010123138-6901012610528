@@ -132,6 +132,27 @@ class Inventory:                                                    # Create cla
         except Exception as e:                                                  # Create exception for any other error
             print(f"An error occurred: {e}")                                    # Show error message
 
+    def show_table(self):                                           # Define method to show products as table (2D array)
+        print("\n===== Product Table =====")                        # Show menu title "Product Table"
+        table = []                                                  # Create empty 2D array
+        i = 0                                                       # Set i = 0 (index)
+        while(i < len(self.products)):                              # Loop until i less number of products
+            p = self.products[i]                                    # Get product from array
+            table.append([p.product_id, p.name, p.price, p.stock])  # Add product as one row in 2D array
+            i = i + 1                                               # Increase index by 1
+        if(len(table) == 0):                                        # Create condition if haven't Product
+            print("No Product.")                                    # Show "No Product."
+        else:                                                       # If have Product
+            print("ID\tName\tPrice\tStock")                         # Show table header
+            i = 0                                                   # Set i = 0 (row)
+            while(i < len(table)):                                  # Loop each row
+                j = 0                                               # Set j = 0 (column)
+                while(j < len(table[i])):                           # Loop each column
+                    print(table[i][j], end="\t")                    # Show data at row i column j
+                    j = j + 1                                       # Increase column by 1
+                print()                                             # New line after each row
+                i = i + 1                                           # Increase row by 1
+
 manager = Inventory()                                               # Create Inventory object name manager
 while True:                                                         # Loop program until user exits
     print("\nInventory Management System Program")                  # Show title program
@@ -143,6 +164,7 @@ while True:                                                         # Loop progr
     print("Enter 5 : Stock Out")                                    # Show main menu 5
     print("Enter 6 : Low Stock")                                    # Show main menu 6
     print("Enter 7 : Add Product from File")                        # Show main menu 7
+    print("Enter 8 : Show Product Table")           				# Show main menu 8
     print("Enter 0 : Exit")                                         # Show main menu 0
 
     choice = int(input("Enter your choice : "))                     # Get user choice as integer
@@ -160,5 +182,7 @@ while True:                                                         # Loop progr
         manager.low_stock()                                         # If select choice 6 to show low stock product
     elif(choice == 7):                                              # Create condition choice 7
         manager.open_file()                                         # If select choice 7 to add product from file
+    elif(choice == 8):                                              # Create condition choice 8
+        manager.show_table()                                        # If select choice 7 to show products as table
     elif(choice == 0):                                              # Create condition choice 0
         break                                                       # If select choice 0 to exit program
